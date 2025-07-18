@@ -1,0 +1,111 @@
+{% extends 'sidebar.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<!-- Header -->
+<div class="flex justify-between items-center mb-6">
+  <div>
+    <h2 class="text-3xl font-semibold text-gray-800">Dashboard</h2>
+    <p class="text-sm text-gray-500">Welcome back, Admin</p>
+  </div>
+  <div class="flex items-center space-x-4">
+    <span class="text-sm text-gray-600">Admin</span>
+    <img src="{% static 'images/avatar.png' %}" alt="avatar" class="w-10 h-10 rounded-full border">
+  </div>
+</div>
+
+<!-- Metrics -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-sm text-gray-500">Total Students</h3>
+    <p class="text-2xl font-bold text-primary">1,240</p>
+  </div>
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-sm text-gray-500">Total Teachers</h3>
+    <p class="text-2xl font-bold text-primary">89</p>
+  </div>
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-sm text-gray-500">Total Payments</h3>
+    <p class="text-2xl font-bold text-green-600">₦5,200,000</p>
+  </div>
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-sm text-gray-500">Pending Fees</h3>
+    <p class="text-2xl font-bold text-red-500">₦1,100,000</p>
+  </div>
+</div>
+
+<!-- Payment Summary & Notifications -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+  <div class="bg-white p-6 rounded-xl shadow col-span-2">
+    <h3 class="text-lg font-semibold text-gray-700 mb-4">Recent School Fee Payments</h3>
+    <table class="w-full text-left text-sm">
+      <thead>
+        <tr class="text-gray-500 border-b">
+          <th class="py-2">Student</th>
+          <th class="py-2">Class</th>
+          <th class="py-2">Amount</th>
+          <th class="py-2">Date</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700">
+        <tr class="border-b hover:bg-gray-50">
+          <td class="py-2">Chinedu Okafor</td>
+          <td class="py-2">SS3</td>
+          <td class="py-2 text-green-600 font-medium">₦50,000</td>
+          <td class="py-2">July 15, 2025</td>
+        </tr>
+        <tr class="border-b hover:bg-gray-50">
+          <td class="py-2">Amaka Johnson</td>
+          <td class="py-2">JSS2</td>
+          <td class="py-2 text-green-600 font-medium">₦45,000</td>
+          <td class="py-2">July 14, 2025</td>
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="py-2">Ibrahim Musa</td>
+          <td class="py-2">SS1</td>
+          <td class="py-2 text-green-600 font-medium">₦47,000</td>
+          <td class="py-2">July 12, 2025</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Notifications -->
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-lg font-semibold text-gray-700 mb-4">Notifications</h3>
+    <ul class="space-y-3 text-sm text-gray-600">
+      <li class="flex items-start gap-2">
+        <i class="fas fa-bell text-yellow-500 mt-1"></i>
+        <span>Parent-teacher meeting scheduled for next Friday.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fas fa-calendar-alt text-blue-500 mt-1"></i>
+        <span>Mid-term exams begin in 2 weeks.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fas fa-user-plus text-green-500 mt-1"></i>
+        <span>New student registered: Olamide Samuel</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+  <!-- Term Info -->
+  <div class="bg-white p-6 rounded-xl shadow col-span-2">
+    <h3 class="text-lg font-semibold text-gray-700 mb-4">Vital Info</h3>
+    <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
+      <div>✔️ Term: <span class="font-medium">3rd Term</span></div>
+      <div>✔️ Year: <span class="font-medium">2024/2025</span></div>
+      <div>✔️ Resumption: <span class="font-medium">Sept 9, 2025</span></div>
+      <div>✔️ Attendance Rate: <span class="font-medium">91%</span></div>
+      <div>✔️ Current Week: <span class="font-medium">4 of 12</span></div>
+      <div>✔️ Exam Week: <span class="font-medium">Week 10</span></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

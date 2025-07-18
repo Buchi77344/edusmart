@@ -1,0 +1,30 @@
+/* styles.css */
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500|Poppins:400,500,600&display=swap");
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-gradient {
+  background-image: linear-gradient(to left, #ee390f 0%, #f9b700 51%, #ee390f 100%);
+  color: white;
+  transition: all 0.4s ease;
+}
+
+.btn-gradient:hover {
+  opacity: 0.9;
+}
+
+.bg-primary {
+  background-color: #ee390f;
+}
+.bg-secondary {
+  background-color: #f9b700;
+}
+.bg-gray-bg {
+  background-color: #f7f7f7;
+}
+
+.text-primary {
+  color: #ee390f;
+}
