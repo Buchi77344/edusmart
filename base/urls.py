@@ -7,6 +7,7 @@ urlpatterns = [
     path('dashboard/',views.dashboard,name='dashboard'),
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name='signup'), 
+     path('student/', views.student, name='student'), 
     
     # Home page
     # Add more URL patterns here as needed

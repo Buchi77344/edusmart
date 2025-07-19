@@ -1,0 +1,333 @@
+{% extends 'sidebar.html' %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+{% load static %}
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<div class="mb-8">
+  <h1 class="text-3xl font-bold text-primary">Student Management</h1>
+  <p class="text-sm text-gray-500">Organized overview of all students by class level</p>
+</div>
+
+
+<!-- Primary School Section -->
+<h2 class="text-xl font-semibold text-gray-800 mb-4">
+  <i class="fas fa-school text-primary mr-2"></i>Primary School
+</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+  <!-- JSS1 -->
+<div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>PRY 6</h2>
+      <button onclick="openStudentModal('pry6')" class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>32</strong>
+    </p>
+    <button onclick="openViewStudentsModal()" class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+
+  <!-- JSS2 -->
+ <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>PRY 5</h2>
+      <button onclick="openStudentModal('JSS2')" class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>42</strong>
+    </p>
+    <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+
+  <!-- JSS3 -->
+<div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>JSS3</h2>
+      <button onclick="openStudentModal('JSS3')" class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>32</strong>
+    </p>
+    <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+
+  <!-- SS1 -->
+ <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>SS1</h2>
+      <button onclick="openStudentModal('SS1')" class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>32</strong>
+    </p>
+    <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+
+  <!-- SS2 -->
+<div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>SS2</h2>
+      <button onclick="openStudentModal('SS2')" class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>32</strong>
+    </p>
+    <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+
+  <!-- SS3 -->
+<div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>SS3</h2>
+      <button onclick="openStudentModal('SS3')" class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>32</strong>
+    </p>
+    <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+</div>
+<!-- Toggle secondary Section -->
+<div class="text-center my-10">
+  <button onclick="document.getElementById('sec-cards').classList.toggle('hidden')" class="btn-gradient px-6 py-2 rounded-full shadow">
+    <i class="fas fa-university mr-2"></i>Add Secondary Data (JSS1-SS3)
+  </button>
+</div>
+
+<div id="sec-cards" class="hidden">
+  <h2 class="text-xl font-semibold text-gray-800 mb-4">
+    <i class="fas fa-graduation-cap text-primary mr-2"></i>University Levels
+  </h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- 100 Level -->
+   <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>100 Level</h2>
+      <button class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>32</strong>
+    </p>
+    <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+
+    <!-- 200 Level -->
+  <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>200 LEVEL</h2>
+      <button class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>32</strong>
+    </p>
+    <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+
+    <!-- 300 Level -->
+ <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>300 LEVEL</h2>
+      <button class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>32</strong>
+    </p>
+    <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+
+    <!-- 400 Level -->
+<div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>400 LEVEL</h2>
+      <button class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>32</strong>
+    </p>
+    <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+ <!-- 400 Level -->
+<div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i>500 LEVEL</h2>
+      <button class="btn-gradient px-4 py-1 rounded-full text-xs font-semibold shadow"><i class="fas fa-plus mr-1"></i>Add Student</button>
+    </div>
+    <p class="text-sm text-gray-700 mb-2">
+      <i class="fas  fa-users mr-2 text-primary"></i>Total Students: <strong>32</strong>
+    </p>
+    <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+      <i class="fas fa-eye mr-1"></i>View Students
+    </button>
+</div>
+
+
+
+  </div>
+</div>
+
+<!-- Modal -->
+<!-- Font Awesome CDN (ensure this is included in your HTML head if not already) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<div id="studentModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+  <div class="bg-white w-full max-w-md rounded-xl shadow-lg p-6 relative">
+    <button onclick="closeStudentModal()" class="absolute top-3 right-3 text-gray-500 hover:text-red-500">
+      <i class="fas fa-times text-lg"></i>
+    </button>
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Add Student to <span id="classTitle"></span></h2>
+    <form>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1">
+          <i class="fas fa-user mr-1 text-primary"></i>Student Name
+        </label>
+        <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="Enter student name" />
+      </div>
+
+      <!-- Custom Gender Dropdown -->
+      <div class="mb-4 relative">
+        <label class="block text-sm font-medium mb-1">
+          <i class="fas fa-venus-mars mr-1 text-primary"></i>Gender
+        </label>
+        <div class="relative">
+          <button type="button" onclick="toggleGenderDropdown()" id="genderDropdownBtn" class="btn-gradient w-full text-left px-3 py-2 rounded">
+            <span id="selectedGender">Select Gender</span>
+            <i class="fas fa-chevron-down float-right pt-1"></i>
+          </button>
+          <ul id="genderDropdown" class="hidden absolute w-full mt-1 bg-white rounded shadow-lg z-10">
+            <li onclick="selectGender('Male')" class="cursor-pointer px-4 py-2 hover:bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-800">Male</li>
+            <li onclick="selectGender('Female')" class="cursor-pointer px-4 py-2 hover:bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-800">Female</li>
+          </ul>
+        </div>
+        <input type="hidden" id="genderInput" name="gender" />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1">
+          <i class="fas fa-hashtag mr-1 text-primary"></i>Age
+        </label>
+        <input type="number" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="Enter age" />
+      </div>
+
+      <button type="submit" class="btn-gradient px-4 py-2 rounded-full w-full text-sm">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+
+<div id="viewStudentsModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+  <div class="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative">
+    <button onclick="closeViewStudentsModal()" class="absolute top-3 right-3 text-gray-500 hover:text-red-500">
+      <i class="fas fa-times text-lg"></i>
+    </button>
+    <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-users mr-2 text-primary"></i>Students List</h2>
+
+    <!-- Sample Data Table -->
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-3 py-2 text-left">#</th>
+            <th class="px-3 py-2 text-left">Name</th>
+            <th class="px-3 py-2 text-left">Gender</th>
+            <th class="px-3 py-2 text-left">Age</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody">
+          <!-- Sample rows (replace with dynamic data as needed) -->
+          <tr class="border-t">
+            <td class="px-3 py-2">1</td>
+            <td class="px-3 py-2">Jane Doe</td>
+            <td class="px-3 py-2">Female</td>
+            <td class="px-3 py-2">16</td>
+          </tr>
+          <tr class="border-t">
+            <td class="px-3 py-2">2</td>
+            <td class="px-3 py-2">John Smith</td>
+            <td class="px-3 py-2">Male</td>
+            <td class="px-3 py-2">17</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+  function openViewStudentsModal() {
+    document.getElementById('viewStudentsModal').classList.remove('hidden');
+  }
+
+  function closeViewStudentsModal() {
+    document.getElementById('viewStudentsModal').classList.add('hidden');
+  }
+</script>
+
+
+<script>
+  // Open the modal and set class title
+  function openStudentModal(className) {
+    document.getElementById('classTitle').innerText = className;
+    document.getElementById('studentModal').classList.remove('hidden');
+  }
+
+  // Close the modal
+  function closeStudentModal() {
+    document.getElementById('studentModal').classList.add('hidden');
+    closeGenderDropdown(); // Close dropdown if still open
+  }
+
+  // Toggle gender dropdown
+  function toggleGenderDropdown() {
+    document.getElementById('genderDropdown').classList.toggle('hidden');
+  }
+
+  // Select gender option
+  function selectGender(value) {
+    document.getElementById('selectedGender').innerText = value;
+    document.getElementById('genderInput').value = value;
+    closeGenderDropdown();
+  }
+
+  // Close gender dropdown helper
+  function closeGenderDropdown() {
+    document.getElementById('genderDropdown').classList.add('hidden');
+  }
+
+  // Auto-close dropdown if clicking outside
+  window.addEventListener('click', function (e) {
+    const btn = document.getElementById('genderDropdownBtn');
+    const dropdown = document.getElementById('genderDropdown');
+    if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+      closeGenderDropdown();
+    }
+  });
+</script>
+
+
+{% endblock %}
+
+    

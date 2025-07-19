@@ -15,3 +15,7 @@ def login(request):
 
 def signup(request):
     return render (request, 'registration/signup.html')
+
+
+def student (request):
+    return render (request, 'student.html')
