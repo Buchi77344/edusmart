@@ -178,3 +178,4 @@ $('.counter').counterUp({
 
 
 }(jQuery));
+
