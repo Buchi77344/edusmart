@@ -3,40 +3,37 @@
 {% block content %}
 {% load static %}
 
-<div class="p-6 bg-gray-bg min-h-screen">
+<div class="p-6 bg-gray-100 min-h-screen">
   <!-- Header -->
-  <div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-semibold text-gray-800">Manage Subjects</h2>
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-2xl font-bold text-gray-800">Manage Subjects</h2>
     <button onclick="openAddSubjectModal()" class="btn-gradient px-6 py-2 rounded-full shadow text-sm">
       <i class="fas fa-plus mr-2"></i>Add Subject
     </button>
   </div>
 
-  <!-- Subject Cards Grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- Subject Card -->
-    <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5">
-      <div class="flex justify-between items-start mb-3">
-        <div>
-          <h3 class="text-xl font-bold text-gray-800">Mathematics</h3>
-          <p class="text-sm text-gray-500">Code: MATH101</p>
-        </div>
-        <span class="text-xs bg-primary text-white px-3 py-1 rounded-full">Science Dept</span>
-      </div>
-      <div class="text-sm text-gray-700 space-y-1">
-        <p><i class="fas fa-user text-primary mr-2"></i> Dr. Musa, Mr. Kelvin</p>
-      </div>
-      <div class="flex justify-end gap-2 mt-4">
-        <button class="px-4 py-1 text-sm bg-yellow-500 text-white rounded-full hover:bg-yellow-600">
-          <i class="fas fa-edit mr-1"></i>Edit
-        </button>
-        <button class="px-4 py-1 text-sm bg-red-600 text-white rounded-full hover:bg-red-700">
-          <i class="fas fa-trash mr-1"></i>Delete
-        </button>
-      </div>
-    </div>
+  <!-- Primary Section -->
+  <div class="mb-10">
+    <h2 class="text-xl font-semibold text-primary mb-4">
+      <i class="fas fa-school text-primary mr-2"></i>Primary School
+    </h2>
+    <div id="primary-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
 
-    <!-- Repeat for other subjects -->
+  <!-- Secondary Section -->
+  <div class="mb-10">
+    <h2 class="text-xl font-semibold text-primary mb-4">
+      <i class="fas fa-chalkboard-teacher mr-2 text-primary"></i>Secondary School
+    </h2>
+    <div id="secondary-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+
+  <!-- University Section -->
+  <div>
+    <h2 class="text-xl font-semibold text-blue-600 mb-4">
+      <i class="fas fa-university mr-2 text-blue-600"></i>University
+    </h2>
+    <div id="university-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </div>
 </div>
 
@@ -47,7 +44,6 @@
       <i class="fas fa-times"></i>
     </button>
     <h3 class="text-xl font-semibold text-gray-800 mb-4">Add New Subject</h3>
-
     <form>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
@@ -85,13 +81,63 @@
   </div>
 </div>
 
+<!-- JavaScript for Modal + Cards -->
 <script>
   function openAddSubjectModal() {
     document.getElementById('addSubjectModal').classList.remove('hidden');
   }
+
   function closeAddSubjectModal() {
     document.getElementById('addSubjectModal').classList.add('hidden');
   }
+
+  const primaryLevels = ["KG 1", "KG 2", "NUR 1", "NUR 2", "PRY 1", "PRY 2", "PRY 3", "PRY 4", "PRY 5", "PRY 6"];
+  const secondaryLevels = ["JSS 1", "JSS 2", "JSS 3", "SS 1", "SS 2", "SS 3"];
+  const universityLevels = ["100 Level", "200 Level", "300 Level", "400 Level"];
+  const universityDepts = ["Computer Science", "Business Admin", "Mass Communication"];
+
+  function createLevelCard(levelName, totalSubjects = 8) {
+    return `
+      <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-bold text-gray-800">
+            <i class="fas fa-chalkboard-teacher text-primary mr-2"></i>${levelName}
+          </h2>
+          <button onclick="openAddSubjectModal()" class="btn-gradient px-3 py-1 rounded-full text-xs font-semibold shadow">
+            <i class="fas fa-plus mr-1"></i>Add Subject
+          </button>
+        </div>
+        <p class="text-sm text-gray-700 mb-2">
+          <i class="fas fa-list text-primary mr-2"></i>Total Subjects: <strong>${totalSubjects}</strong>
+        </p>
+        <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+          <i class="fas fa-eye mr-1"></i>View Subjects
+        </button>
+      </div>`;
+  }
+
+  // Render cards into their containers
+  function renderCards() {
+    const primaryContainer = document.getElementById('primary-container');
+    const secondaryContainer = document.getElementById('secondary-container');
+    const universityContainer = document.getElementById('university-container');
+
+    primaryLevels.forEach(level => {
+      primaryContainer.innerHTML += createLevelCard(level);
+    });
+
+    secondaryLevels.forEach(level => {
+      secondaryContainer.innerHTML += createLevelCard(level);
+    });
+
+    universityLevels.forEach((level, index) => {
+      const dept = universityDepts[index % universityDepts.length];
+      universityContainer.innerHTML += createLevelCard(`${level} - ${dept}`);
+    });
+  }
+
+  // Call render
+  renderCards();
 </script>
 
 {% endblock %}

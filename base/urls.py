@@ -11,6 +11,7 @@ urlpatterns = [
     path('teacher/', views.teacher, name='teacher'), 
     path('classes/', views.classes, name='classes'),
     path('subject/', views.subject, name='subject'),
+    path('attendance/', views.attendance, name='attendance'),
     
     # Home page
     # Add more URL patterns here as needed

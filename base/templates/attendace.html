@@ -1,0 +1,141 @@
+{% extends 'sidebar.html' %}
+{% block title %}Attendance Dashboard{% endblock %}
+{% load static %}
+{% block content %}
+
+<!-- Include Tailwind & Font Awesome -->
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<div class="p-6 bg-gray-bg min-h-screen">
+  <h1 class="text-2xl font-semibold text-gray-800 mb-6">Attendance Dashboard</h1>
+
+  <!-- Primary School -->
+  <div class="mb-10">
+    <h2 class="text-xl font-semibold text-primary mb-4"> <i class="fas fa-school text-primary mr-2"></i>Primary School</h2>
+    <div id="primary-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+
+  <!-- Secondary School -->
+  <div class="mb-10">
+    <h2 class="text-xl font-semibold text-primary mb-4">  <i class="fas fa-school text-primary mr-2"></i>Secondary School</h2>
+    <div id="secondary-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+
+  <!-- University -->
+  <div class="mb-10">
+    <h2 class="text-xl font-semibold text-primary mb-4">University</h2>
+    <div id="university-container"></div>
+  </div>
+</div>
+
+<!-- Attendance Modal -->
+<div id="attendance-modal" class="hidden  fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+  <div class="bg-white w-full border-orange-500  border-2 max-w-xl rounded-lg shadow p-6 relative">
+    <button id="close-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl">&times;</button>
+    <h2 class="text-lg font-semibold mb-4">Mark Attendance - <span id="class-title"></span></h2>
+    
+    <form id="attendance-form" class="space-y-3 max-h-72 overflow-y-auto">
+      <!-- Students will be inserted here -->
+    </form>
+
+    <div class="mt-4 text-right">
+      <button class="btn-gradient text-white px-4 py-2 rounded hover:btn-gradient">Submit Attendance</button>
+    </div>
+  </div>
+</div>
+
+<!-- Script to generate demo data and modal logic -->
+<script>
+  const primaryLevels = ["KG 1", "KG 2", "NUR 1", "NUR 2", "PRY 1", "PRY 2", "PRY 3", "PRY 4", "PRY 5", "PRY 6"];
+  const secondaryLevels = ["JSS 1", "JSS 2", "JSS 3", "SS 1", "SS 2", "SS 3"];
+  const universityLevels = ["100 Level", "200 Level", "300 Level", "400 Level"];
+  const universityDepts = ["Computer Science", "Business Admin", "Mass Communication"];
+
+  const createCard = (title, total = 32) => `
+    <div class="bg-white rounded-xl shadow p-5">
+      <div class="mb-3">
+        <h3 class="text-lg font-semibold text-gray-800"><i class="fas fa-user-graduate text-primary mr-2"></i> ${title}</h3>
+        <p class="text-sm text-gray-500"><i class="fas  fa-users mr-2 mt-3 text-primary"></i>Total Students: ${total}</p>
+      </div>
+      <div class="flex gap-3">
+        <button class="view-students btn-gradient text-white px-3 py-1 rounded text-sm hover:btn-gradient flex items-center gap-2">
+          <i class="fas fa-eye"></i>
+          View Students
+        </button>
+      </div>
+    </div>
+  `;
+
+  const primaryContainer = document.getElementById("primary-container");
+  primaryLevels.forEach(level => {
+    primaryContainer.innerHTML += createCard(level);
+  });
+
+  const secondaryContainer = document.getElementById("secondary-container");
+  secondaryLevels.forEach(level => {
+    secondaryContainer.innerHTML += createCard(level, 45);
+  });
+
+  const universityContainer = document.getElementById("university-container");
+  universityLevels.forEach(level => {
+    let deptCards = universityDepts.map(dept => `
+      <div class="border rounded-lg p-4">
+        <h4 class="text-md font-medium text-gray-700">${dept}</h4>
+        <p class="text-sm text-gray-500 mb-2">Total Students: 50</p>
+        <div class="flex gap-3">
+          <button class="view-students btn-gradient text-white px-3 py-1 rounded text-sm hover:btn-gradient flex items-center gap-2">
+            <i class="fas fa-eye"></i>
+            View Students
+          </button>
+        </div>
+      </div>
+    `).join("");
+
+    universityContainer.innerHTML += `
+      <div class="bg-white rounded-xl shadow p-5 mb-6">
+        <h3 class="text-lg font-semibold text-gray-800 mb-3">${level}</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          ${deptCards}
+        </div>
+      </div>
+    `;
+  });
+
+  // Attendance Modal Logic
+  const studentsDemo = ["Aliyu Musa", "Grace Johnson", "Samuel Obi", "Fatima Bello", "John Doe","John Doe","John Doe","John Doe"];
+  const attendanceModal = document.getElementById("attendance-modal");
+  const classTitleSpan = document.getElementById("class-title");
+  const attendanceForm = document.getElementById("attendance-form");
+  const closeModalBtn = document.getElementById("close-modal");
+
+  // Event delegation for dynamic buttons
+  document.addEventListener("click", function(e) {
+    if (e.target.closest(".view-students")) {
+      e.preventDefault();
+      const parentCard = e.target.closest("div").parentNode;
+      const classTitle = parentCard.querySelector("h3, h4").innerText;
+      classTitleSpan.innerText = classTitle;
+
+      // Populate students
+      attendanceForm.innerHTML = studentsDemo.map(name => `
+        <div class="flex items-center justify-between  border p-2 rounded">
+          <span>${name}</span>
+          <select name="${name}" class="border  rounded px-2 py-1">
+            <option value="present">Present</option>
+            <option value="absent">Absent</option>
+          </select>
+        </div>
+      `).join("");
+
+      attendanceModal.classList.remove("hidden");
+    }
+  });
+
+  closeModalBtn.addEventListener("click", () => {
+    attendanceModal.classList.add("hidden");
+  });
+</script>
+
+{% endblock %}

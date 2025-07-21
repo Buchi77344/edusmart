@@ -29,3 +29,7 @@ def classes(request):
 
 def subject(request):
     return render (request, 'subject.html')
+
+
+def attendance(request):
+    return render (request, 'attendace.html')
