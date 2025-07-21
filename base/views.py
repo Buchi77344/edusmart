@@ -19,3 +19,13 @@ def signup(request):
 
 def student (request):
     return render (request, 'student.html')
+
+
+def teacher(request):
+    return render (request, 'teacher.html')
+
+def classes(request):
+    return render (request, 'class.html')
+
+def subject(request):
+    return render (request, 'subject.html')
