@@ -12,6 +12,9 @@ urlpatterns = [
     path('classes/', views.classes, name='classes'),
     path('subject/', views.subject, name='subject'),
     path('attendance/', views.attendance, name='attendance'),
+    path("api/register/", views.register_user, name="register_user"),
+    path("api/login/", views.login_user, name="login_user"),
+    path('logout/', views.logout, name='logout'),  
     
     # Home page
     # Add more URL patterns here as needed

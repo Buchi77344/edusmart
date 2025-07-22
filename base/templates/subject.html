@@ -80,15 +80,93 @@
     </form>
   </div>
 </div>
+<!-- Subject List Modal -->
+<!-- Subject List Modal -->
+<div id="subjectModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+  <div class="bg-white w-full max-w-md rounded-2xl shadow-lg p-6 relative">
+    
+    <!-- Close Button -->
+    <button onclick="closeSubjectModal()" class="absolute top-3 right-3 text-gray-600 hover:text-red-600 text-xl font-bold">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <!-- Modal Title -->
+    <h3 id="modalClassTitle" class="text-xl font-semibold mb-5 text-gray-800 flex items-center">
+      <i class="fas fa-book-open text-primary mr-2"></i> Subjects for Class
+    </h3>
+
+    <!-- Subject List -->
+    <ul id="subjectList" class="space-y-3 text-gray-700">
+      <!-- Example Placeholder (will be replaced dynamically) -->
+      <!-- 
+      <li class="flex items-center bg-gray-100 p-2 rounded-md">
+        <i class="fas fa-book text-primary mr-2"></i> Mathematics
+      </li>
+      -->
+    </ul>
+
+    <!-- No Subjects Message -->
+    <p id="noSubjectsMsg" class="text-sm text-gray-500 text-center mt-4 hidden">
+      <i class="fas fa-info-circle mr-1"></i> No subjects available for this class.
+    </p>
+  </div>
+</div>
+
+
 
 <!-- JavaScript for Modal + Cards -->
 <script>
-  function openAddSubjectModal() {
+  function openAddSubjectModal(levelName) {
     document.getElementById('addSubjectModal').classList.remove('hidden');
+    console.log("Open add subject for", levelName);
   }
 
   function closeAddSubjectModal() {
     document.getElementById('addSubjectModal').classList.add('hidden');
+  }
+
+function openSubjectListModal(levelName) {
+  const modal = document.getElementById('subjectModal');
+  const modalTitle = document.getElementById('modalClassTitle');
+  const subjectList = document.getElementById('subjectList');
+  const noSubjectsMsg = document.getElementById('noSubjectsMsg');
+
+  const subjectsData = {
+    "KG 1": ["Mathematics", "English", "Drawing"],
+    "KG 2": ["Phonics", "Basic Science"],
+    "NUR 1": [],
+    "PRY 1": ["Mathematics", "English", "Science", "Social Studies"],
+    "JSS 1": ["Mathematics", "English", "Basic Tech"],
+    "100 Level - Computer Science": ["Programming", "Calculus", "Digital Logic"]
+  };
+
+  const subjects = subjectsData[levelName] || [];
+
+  modalTitle.innerHTML = `<i class="fas fa-chalkboard-teacher text-primary mr-2"></i> Subjects for ${levelName} `;
+  subjectList.innerHTML = '';
+
+  if (subjects.length === 0) {
+    noSubjectsMsg.classList.remove('hidden');
+  } else {
+    noSubjectsMsg.classList.add('hidden');
+    subjects.forEach(subject => {
+      const li = document.createElement('li');
+      li.className = 'flex items-center bg-gray-100 p-2 rounded-md shadow-sm justify-between';
+      li.innerHTML = `
+        <i class="fas fa-book text-primary mr-2"></i> 
+        <span class="flex-1">${subject}</span>
+        <i class="fas fa-star text-orange-600 ml-2"></i>
+      `;
+      subjectList.appendChild(li);
+    });
+  }
+
+  modal.classList.remove('hidden');
+}
+
+
+  function closeSubjectModal() {
+    document.getElementById("subjectModal").classList.add("hidden");
   }
 
   const primaryLevels = ["KG 1", "KG 2", "NUR 1", "NUR 2", "PRY 1", "PRY 2", "PRY 3", "PRY 4", "PRY 5", "PRY 6"];
@@ -96,27 +174,43 @@
   const universityLevels = ["100 Level", "200 Level", "300 Level", "400 Level"];
   const universityDepts = ["Computer Science", "Business Admin", "Mass Communication"];
 
-  function createLevelCard(levelName, totalSubjects = 8) {
+  // Subject data for each class
+  const subjectsByClass = {
+    "KG 1": ["Drawing", "Story Time"],
+    "PRY 1": ["English", "Civic", "Math"],
+    "JSS 1": ["Mathematics", "Basic Science", "English"],
+    "SS 1": ["Biology", "Economics", "Literature"],
+    "100 Level - Computer Science": ["Data Structures", "Algorithms", "Discrete Math"],
+    "200 Level - Business Admin": ["Financial Accounting", "Marketing Principles"],
+    "300 Level - Mass Communication": ["Broadcast Journalism", "Media Ethics"],
+    "400 Level - Computer Science": ["AI Fundamentals", "Cloud Computing"],
+    "200 Level - Mass Communication": ["Public Speaking", "News Writing"],
+    "100 Level - Business Admin": ["Intro to Business", "Management Theories"]
+  };
+
+  function createLevelCard(levelName) {
+    const subjectCount = subjectsByClass[levelName]?.length ?? 0;
+
     return `
       <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-lg font-bold text-gray-800">
             <i class="fas fa-chalkboard-teacher text-primary mr-2"></i>${levelName}
           </h2>
-          <button onclick="openAddSubjectModal()" class="btn-gradient px-3 py-1 rounded-full text-xs font-semibold shadow">
+          <button onclick="openAddSubjectModal('${levelName}')" class="btn-gradient px-3 py-1 rounded-full text-xs font-semibold shadow">
             <i class="fas fa-plus mr-1"></i>Add Subject
           </button>
         </div>
         <p class="text-sm text-gray-700 mb-2">
-          <i class="fas fa-list text-primary mr-2"></i>Total Subjects: <strong>${totalSubjects}</strong>
+          <i class="fas fa-list text-primary mr-2"></i>Total Subjects: <strong>${subjectCount}</strong>
         </p>
-        <button class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
+        <button onclick="openSubjectListModal('${levelName}')" class="btn-gradient text-white px-4 py-1 mt-3 rounded-md text-sm shadow hover:bg-orange-700">
           <i class="fas fa-eye mr-1"></i>View Subjects
         </button>
-      </div>`;
+      </div>
+    `;
   }
 
-  // Render cards into their containers
   function renderCards() {
     const primaryContainer = document.getElementById('primary-container');
     const secondaryContainer = document.getElementById('secondary-container');
@@ -132,12 +226,14 @@
 
     universityLevels.forEach((level, index) => {
       const dept = universityDepts[index % universityDepts.length];
-      universityContainer.innerHTML += createLevelCard(`${level} - ${dept}`);
+      const fullName = `${level} - ${dept}`;
+      universityContainer.innerHTML += createLevelCard(fullName);
     });
   }
 
-  // Call render
   renderCards();
 </script>
+
+
 
 {% endblock %}

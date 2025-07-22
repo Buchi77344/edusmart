@@ -6,17 +6,30 @@ from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 
 # ---------- AUTH & USER ROLES ----------
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
 class User(AbstractUser):
     ROLE_CHOICES = [
         ('admin', 'Admin'),
         ('teacher', 'Teacher'),
         ('student', 'Student'),
     ]
+
+    INSTITUTION_TYPE_CHOICES = [
+        ('Primary', 'Primary'),
+        ('Secondary', 'Secondary'),
+        ('University', 'University'),
+    ]
+
     role = models.CharField(max_length=10, choices=ROLE_CHOICES)
     profile_photo = models.ImageField(upload_to='profiles/', null=True, blank=True)
+    school_name = models.CharField(max_length=255, null=True)
+    institution_type = models.JSONField(default=list)  # For storing multiple selections like ["Primary", "Secondary"]
 
     def __str__(self):
         return f"{self.username} ({self.role})"
+
 
 # ---------- CLASSES & SUBJECTS ----------
 class ClassRoom(models.Model):
